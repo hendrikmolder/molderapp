@@ -5,36 +5,26 @@ import {
   Text,
   View
 } from 'react-native';
+import { StackNavigator } from 'react-navigation'
+import * as firebase from 'firebase';
 
 import Splash from './components/Splash'
+import Login from './components/Login'
 
-export default class MolderApp extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Splash />
-      </View>
-    );
-  }
+import AppView from './components/AppView'
+
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "<your-api-key>",
+  authDomain: "<your-auth-domain>",
+  databaseURL: "<your-database-url>",
+  storageBucket: "<your-storage-bucket>"
 }
+const firebaseApp = firebase.initializeApp(firebaseConfig)
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+const MolderApp = StackNavigator({
+  Main: {screen: Splash},
+  Login: {screen: Login}
+})
 
-AppRegistry.registerComponent('MolderApp', () => MolderApp);
+AppRegistry.registerComponent('MolderApp', () => MolderApp)

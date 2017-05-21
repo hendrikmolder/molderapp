@@ -1,5 +1,13 @@
 import React, { Component } from 'react'
-import { View, Text, Image, StyleSheet } from 'react-native'
+import { 
+  View,
+  Button, 
+  Text,
+  Image,
+  StyleSheet, 
+  Navigator, 
+  DrawerLayoutAndroid 
+} from 'react-native'
 import TimerMixin from 'react-timer-mixin'
 
 const styles = StyleSheet.create({
@@ -28,20 +36,24 @@ const styles = StyleSheet.create({
 })
 
 export default class Splash extends Component {
-  
-  mixins: [TimerMixin]
-  componentDidMount() {
-    this.setTimeout( ()=> {
-
-    })
+  static navigationOptions = {
+    title: null,
+    header: null
   }
-  
+
   render() {
+    const { navigate } = this.props.navigation
+
     return (
       <View style={styles.container}>
         <View style={styles.logoContainer}>
           <Image style={styles.logo} source={require('./assets/logo.png')} />
-          <Text style={styles.title}>molder app</Text>
+          <Button 
+            style={styles.title} 
+            onPress={() => navigate('Login')}
+            title='Sisene'
+            color='red'
+            />
         </View>
         
       </View>
